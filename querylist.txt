@@ -8,3 +8,13 @@
 		where 309 IN (message_to, message_from) 
 		ORDER BY id desc
 		) userId")[0];
+
+
+
+           if(isset($messageObj->getMessageUsers()->userId)){
+               $explode = explode(",",$messageObj->getMessageUsers()->userId);
+               
+           }else{
+              $explode = array();
+           }
+           

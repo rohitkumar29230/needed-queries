@@ -1,0 +1,10 @@
+ $response = \DB::select("SELECT  REPLACE(REPLACE( GROUP_CONCAT( distinct message_to ,message_from),309,''),',,',',') 
+		as userId FROM 
+		(
+			select 
+			case when message_to <> 309 then message_from ELSE message_to end as message_from, 
+			case when message_from = 309 then message_to ELSE message_from end as message_to , message 
+		from tradesearch.request_messaging 
+		where 309 IN (message_to, message_from) 
+		ORDER BY id desc
+		) userId")[0];
